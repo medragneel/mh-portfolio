@@ -1,0 +1,179 @@
+---
+import { site, socials } from "../data/site";
+---
+
+<section id="top" class="hero">
+  <div class="wrap hero-inner">
+    <div class="term">
+      <div class="term-bar">
+        <span class="term-dot" style="background:#e26b5c"></span>
+        <span class="term-dot" style="background:#e8b04f"></span>
+        <span class="term-dot" style="background:#6fb3a0"></span>
+        <span class="term-path mono">~/medmh — zsh</span>
+      </div>
+      <div class="term-body mono">
+        <p class="line l1"><span class="prompt">$</span> whoami</p>
+        <p class="line l2">Mohamed — <span class="accent">MedMh</span></p>
+        <p class="line l3"><span class="prompt">$</span> cat role.txt</p>
+      </div>
+    </div>
+
+    <h1 class="headline">
+      A <span class="accent">self‑taught</span><br />
+      developer, since {site.since}.
+    </h1>
+
+    <p class="sub">
+      Based in {site.location}. I build web apps end to end, then design the
+      brand and visuals around them — code and craft from the same hand.
+    </p>
+
+    <div class="actions">
+      <a class="btn btn-solid" href={`mailto:${site.email}`}>Say hi</a>
+      <a class="btn" href="#work">View work ↓</a>
+    </div>
+
+    <div class="socials mono" aria-label="Social links">
+      {socials.map((s, i) => (
+        <>
+          <a href={s.url} target="_blank" rel="noopener noreferrer">{s.label}</a>
+          {i < socials.length - 1 && <span class="sep">/</span>}
+        </>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-top: 72px;
+    border-top: none;
+  }
+
+  .hero-inner {
+    max-width: 760px;
+  }
+
+  .term {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--bg-elevated);
+    overflow: hidden;
+    margin-bottom: 40px;
+    box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.6);
+  }
+
+  .term-bar {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+
+  .term-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    opacity: 0.85;
+  }
+
+  .term-path {
+    margin-left: 10px;
+    font-size: 12px;
+    color: var(--text-faint);
+  }
+
+  .term-body {
+    padding: 16px 18px 20px;
+    font-size: 13.5px;
+    line-height: 1.9;
+  }
+
+  .prompt {
+    color: var(--accent-2);
+    margin-right: 8px;
+  }
+
+  .line {
+    margin: 0;
+    color: var(--text-dim);
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    animation: type 0.02s steps(1, end) forwards;
+    animation-fill-mode: forwards;
+  }
+
+  .line.l1 {
+    animation: reveal 0.4s steps(20, end) forwards;
+  }
+  .line.l2 {
+    color: var(--text);
+    animation: reveal 0.5s steps(20, end) 0.5s forwards;
+  }
+  .line.l3 {
+    animation: reveal 0.4s steps(20, end) 1.1s forwards;
+  }
+
+  @keyframes reveal {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .line {
+      width: auto;
+      animation: none;
+    }
+  }
+
+  .accent {
+    color: var(--accent);
+  }
+
+  .headline {
+    font-size: clamp(38px, 6.4vw, 62px);
+    line-height: 1.06;
+    margin-bottom: 22px;
+  }
+
+  .sub {
+    font-size: 17px;
+    color: var(--text-dim);
+    max-width: 480px;
+    margin: 0 0 34px;
+  }
+
+  .actions {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 44px;
+  }
+
+  .socials {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12.5px;
+    color: var(--text-faint);
+  }
+
+  .socials a {
+    text-decoration: none;
+    color: var(--text-faint);
+    transition: color 0.18s ease;
+  }
+
+  .socials a:hover {
+    color: var(--accent-2);
+  }
+
+  .sep {
+    color: var(--border);
+  }
+</style>

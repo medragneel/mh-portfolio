@@ -1,0 +1,131 @@
+---
+import { gallery } from "../data/site";
+const cats = ["All", "Graphic Design", "Web Design"];
+---
+
+<section id="gallery">
+  <div class="wrap">
+    <p class="eyebrow">assets/design</p>
+    <div class="section-head">
+      <h2 class="section-title">Visual work</h2>
+      <div class="filters mono" role="group" aria-label="Filter gallery by category">
+        {cats.map((c, i) => (
+          <button class="filter" data-filter={c} aria-pressed={i === 0 ? "true" : "false"}>{c}</button>
+        ))}
+      </div>
+    </div>
+
+    <div class="grid" id="gallery-grid">
+      {gallery.map((item) => (
+        <figure class="tile" data-cat={item.category}>
+          <img src={item.src} alt={item.alt} loading="lazy" />
+          <figcaption class="mono">{item.category}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .filters {
+    display: flex;
+    gap: 6px;
+    font-size: 12.5px;
+  }
+
+  .filter {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 7px 12px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: border-color 0.18s ease, color 0.18s ease, background 0.18s ease;
+  }
+
+  .filter:hover {
+    color: var(--text);
+  }
+
+  .filter[aria-pressed="true"] {
+    color: var(--accent);
+    border-color: rgba(var(--accent-rgb), 0.5);
+    background: rgba(var(--accent-rgb), 0.08);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .tile {
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    background: var(--bg-elevated);
+    aspect-ratio: 4 / 3;
+  }
+
+  .tile.is-hidden {
+    display: none;
+  }
+
+  .tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .tile:hover img {
+    transform: scale(1.04);
+  }
+
+  figcaption {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    font-size: 11px;
+    padding: 4px 8px;
+    background: rgba(12, 13, 15, 0.75);
+    backdrop-filter: blur(4px);
+    border-radius: 3px;
+    color: var(--text-dim);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .tile:hover figcaption {
+    opacity: 1;
+  }
+
+  @media (max-width: 720px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .section-head {
+      align-items: flex-start;
+    }
+  }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>(".filter");
+  const tiles = document.querySelectorAll<HTMLElement>(".tile");
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      buttons.forEach((b) => b.setAttribute("aria-pressed", "false"));
+      btn.setAttribute("aria-pressed", "true");
+      const filter = btn.dataset.filter;
+
+      tiles.forEach((tile) => {
+        const show = filter === "All" || tile.dataset.cat === filter;
+        tile.classList.toggle("is-hidden", !show);
+      });
+    });
+  });
+</script>

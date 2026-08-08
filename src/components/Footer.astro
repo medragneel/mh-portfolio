@@ -1,0 +1,29 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <div class="wrap foot-inner mono">
+    <span>designed &amp; built by @medmh · {year}</span>
+    <span class="tag">astro</span>
+  </div>
+</footer>
+
+<style>
+  footer {
+    border-top: 1px solid var(--border-soft);
+    padding: 26px 0;
+  }
+
+  .foot-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-faint);
+  }
+
+  .tag {
+    color: var(--text-faint);
+  }
+</style>

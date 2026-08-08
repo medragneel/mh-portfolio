@@ -1,0 +1,216 @@
+:root {
+  /* color */
+  --bg: #0c0d0f;
+  --bg-elevated: #151718;
+  --bg-elevated-2: #1b1d1f;
+  --text: #edece6;
+  --text-dim: #96998f;
+  --text-faint: #5a5d57;
+  --accent: #e8a33d;
+  --accent-rgb: 232, 163, 61;
+  --accent-2: #6fb3a0;
+  --accent-2-rgb: 111, 179, 160;
+  --border: #24261f;
+  --border-soft: #1c1e19;
+  --danger: #c9704e;
+
+  /* type */
+  --font-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* scale */
+  --container: 1120px;
+  --radius: 3px;
+  --radius-lg: 4px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  background-image:
+    radial-gradient(ellipse 60% 40% at 15% 0%, rgba(var(--accent-rgb), 0.07), transparent 60%),
+    radial-gradient(ellipse 50% 35% at 100% 10%, rgba(var(--accent-2-rgb), 0.05), transparent 60%);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: rgba(var(--accent-rgb), 0.35);
+  color: var(--text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.wrap {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 28px;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 14px;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 1px;
+  flex: none;
+}
+
+section {
+  position: relative;
+  padding: 96px 0;
+  border-top: 1px solid var(--border-soft);
+}
+
+@media (max-width: 720px) {
+  section {
+    padding: 64px 0;
+  }
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.section-title {
+  font-size: clamp(28px, 4vw, 40px);
+}
+
+.section-note {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--text-faint);
+  text-align: right;
+  max-width: 220px;
+}
+
+@media (max-width: 720px) {
+  .section-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .section-note {
+    text-align: left;
+  }
+}
+
+.btn {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.18s ease, transform 0.18s ease, background 0.18s ease;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  border-color: var(--text-dim);
+  transform: translateY(-1px);
+}
+
+.btn-solid {
+  background: var(--accent);
+  color: #16130a;
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+.btn-solid:hover {
+  background: #f0b458;
+  border-color: #f0b458;
+}
+
+.btn-mode {
+  border-color: rgba(var(--accent-2-rgb), 0.45);
+  color: var(--accent-2);
+}
+
+.btn-mode:hover {
+  background: rgba(var(--accent-2-rgb), 0.1);
+  border-color: var(--accent-2);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

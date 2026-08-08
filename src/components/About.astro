@@ -1,0 +1,75 @@
+---
+import { stackChips } from "../data/site";
+---
+
+<section id="about">
+  <div class="wrap about-inner">
+    <div class="col">
+      <p class="eyebrow">README.md</p>
+      <h2 class="section-title">About</h2>
+            <p class="bio">
+        Hey, I'm Mohamed. I've always been drawn to computers and to making
+        things with them — so I started learning HTML and CSS back in 2018,
+        and never really stopped. Since then I've picked up JavaScript,
+        Python, Flask, and Figma along the way, and by now the two sides
+        have merged: I don't build a site and hand it off for a "designer"
+        to skin, and I don't design a brand without knowing what it takes
+        to ship it.
+      </p>
+      <p class="bio">
+        In 2026 that means full-stack web development and graphic design
+        under one process — interfaces, brand identity, and the motion and
+        content that carries them, built and designed by the same person
+        end to end.
+      </p>
+    </div>
+
+    <div class="col">
+      <p class="eyebrow">stack.json</p>
+      <ul class="chips mono">
+        {stackChips.map((chip) => (
+          <li>{chip}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 60px;
+  }
+
+  .bio {
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: var(--text-dim);
+    max-width: 52ch;
+  }
+
+  .chips {
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .chips li {
+    font-size: 12.5px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 8px 12px;
+    color: var(--text-dim);
+  }
+
+  @media (max-width: 720px) {
+    .about-inner {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+  }
+</style>
