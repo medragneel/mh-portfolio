@@ -13,30 +13,30 @@ import { nav, site } from "../data/site";
         <a href={item.href}>{item.label}</a>
       ))}
     </nav>
-        <div class="btns">
 
-<a
-    class="btn btn-shop"
-      href={site.devModeUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Open ecommerce-mode — 360prod-dev, in a new tab"
-    >
-      <span class="dot dot-shop" aria-hidden="true"></span>
-      Dev-mode
-    </a>
+    <div class="btns">
+      <a
+        class="btn btn-shop"
+        href={site.devModeUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open dev-mode in a new tab"
+      >
+        <span class="dot dot-shop" aria-hidden="true"></span>
+        <span>Dev-mode</span>
+      </a>
 
-    <a
-      class="btn btn-mode"
-      href={site.designModeUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Open design-mode — 26.MH Studio, in a new tab"
-    >
-      <span class="dot" aria-hidden="true"></span>
-      design-mode
-    </a>
-</div>
+      <a
+        class="btn btn-mode"
+        href={site.designModeUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open design-mode in a new tab"
+      >
+        <span class="dot" aria-hidden="true"></span>
+        <span>design-mode</span>
+      </a>
+    </div>
   </div>
 </header>
 
@@ -46,6 +46,7 @@ import { nav, site } from "../data/site";
     top: 0;
     z-index: 40;
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     background: rgba(12, 13, 15, 0.72);
     border-bottom: 1px solid var(--border-soft);
   }
@@ -53,16 +54,13 @@ import { nav, site } from "../data/site";
   .nav-inner {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     gap: 20px;
     padding-block: 16px;
   }
-  .btns{
-      display:flex;
-      gap:1em;
-  }
 
   .brand {
+    flex-shrink: 0;
     font-size: 15px;
     font-weight: 500;
     text-decoration: none;
@@ -79,27 +77,48 @@ import { nav, site } from "../data/site";
 
   .links {
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 28px;
     font-size: 14px;
+    flex: 1;
   }
 
   .links a {
     text-decoration: none;
     color: var(--text-dim);
     transition: color 0.18s ease;
+    white-space: nowrap;
   }
 
   .links a:hover {
     color: var(--text);
   }
 
+  .btns {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
+  }
+
   .dot {
     width: 6px;
     height: 6px;
+    flex-shrink: 0;
     border-radius: 50%;
     background: var(--accent-2);
     box-shadow: 0 0 0 3px rgba(var(--accent-2-rgb), 0.18);
   }
+
   .btn-shop {
     border-color: rgba(var(--accent-rgb), 0.45);
     color: var(--accent);
@@ -115,12 +134,100 @@ import { nav, site } from "../data/site";
     box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.18);
   }
 
-  .nav-inner {
-    gap: 12px;
+  /* Tablet */
+  @media (max-width: 900px) {
+    .nav-inner {
+      gap: 14px;
+    }
+
+    .links {
+      gap: 18px;
+    }
+
+    .btns {
+      gap: 6px;
+    }
+
+    .btn {
+      padding-inline: 10px;
+      font-size: 12px;
+    }
   }
 
+  /* Mobile */
   @media (max-width: 720px) {
+    .nav-inner {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-areas:
+        "brand buttons";
+      align-items: center;
+      gap: 12px;
+      padding-block: 11px;
+    }
+
+    .brand {
+      grid-area: brand;
+      font-size: 14px;
+    }
+
     .links {
+      display: none;
+    }
+
+    .btns {
+      grid-area: buttons;
+      justify-content: flex-end;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .btn {
+      min-height: 34px;
+      padding: 7px 9px;
+      gap: 6px;
+      font-size: 11px;
+    }
+
+    .dot {
+      width: 5px;
+      height: 5px;
+    }
+  }
+
+  /* Small phones */
+  @media (max-width: 420px) {
+    .nav-inner {
+      gap: 8px;
+    }
+
+    .brand {
+      font-size: 13px;
+    }
+
+    .brand-caret {
+      margin-right: 3px;
+    }
+
+    .btns {
+      gap: 4px;
+    }
+
+    .btn {
+      padding: 6px 7px;
+      font-size: 10px;
+      gap: 5px;
+    }
+  }
+
+  /* Very small phones */
+  @media (max-width: 360px) {
+    .btn {
+      padding-inline: 6px;
+      font-size: 9px;
+    }
+
+    .dot {
       display: none;
     }
   }
