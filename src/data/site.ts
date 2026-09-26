@@ -6,6 +6,7 @@ export const site = {
   location: "Algeria",
   since: 2018,
   designModeUrl: "https://mh-studio-26.vercel.app/ar/",
+  devModeUrl: "https://360-prod-coming-soon.vercel.app/",
   resumeUrl: "#",
 };
 
