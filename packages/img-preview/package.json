@@ -1,0 +1,17 @@
+{
+  "name": "img-preview-element",
+  "version": "1.0.0",
+  "description": "Framework-agnostic <img-preview> web component: hover zoom, click to expand fullscreen. Includes an Astro wrapper.",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": ["./src/register.js"],
+  "exports": {
+    ".": { "types": "./src/index.d.ts", "default": "./src/index.js" },
+    "./register": "./src/register.js",
+    "./astro": "./src/ImgPreview.astro"
+  },
+  "files": ["src"],
+  "keywords": ["web-component", "custom-element", "astro", "image", "lightbox"],
+  "peerDependencies": { "astro": ">=4.0.0" },
+  "peerDependenciesMeta": { "astro": { "optional": true } }
+}

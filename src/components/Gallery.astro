@@ -1,5 +1,6 @@
 ---
 import { gallery } from "../data/site";
+import ImgPreview from "img-preview-element/astro";
 const cats = ["All", "Graphic Design", "Web Design"];
 ---
 
@@ -17,8 +18,8 @@ const cats = ["All", "Graphic Design", "Web Design"];
 
     <div class="grid" id="gallery-grid">
       {gallery.map((item) => (
-        <figure class="tile" data-cat={item.category}>
-          <img src={item.src} alt={item.alt} loading="lazy" />
+       <figure class="tile" data-cat={item.category}>
+          <ImgPreview src={item.src} alt={item.alt} width="100%" height="100%" />
           <figcaption class="mono">{item.category}</figcaption>
         </figure>
       ))}
@@ -96,6 +97,7 @@ const cats = ["All", "Graphic Design", "Web Design"];
     color: var(--text-dim);
     opacity: 0;
     transition: opacity 0.2s ease;
+    pointer-events: none;
   }
 
   .tile:hover figcaption {

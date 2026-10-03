@@ -1,0 +1,39 @@
+---
+/**
+ * <ImgPreview src="..." alt="..." />
+ * Server-renders a plain <img> inside the custom element (works without JS),
+ * then the client script upgrades it.
+ */
+interface Props {
+  src: string;
+  alt?: string;
+  /** Optional higher-res image used in the fullscreen view */
+  fullSrc?: string;
+  width?: string;
+  height?: string;
+  /** CSS aspect-ratio, e.g. "4 / 3" */
+  ratio?: string;
+  /** CSS border-radius, e.g. "8px" or "50%" */
+  radius?: string;
+  class?: string;
+}
+
+const { src, alt = "", fullSrc, width, height, ratio, radius, class: className } = Astro.props;
+
+const style = [
+  width && `width:${width}`,
+  height && `height:${height}`,
+  ratio && `aspect-ratio:${ratio}`,
+  radius && `border-radius:${radius}`,
+]
+  .filter(Boolean)
+  .join(";");
+---
+
+<img-preview src={src} alt={alt} full-src={fullSrc} class={className} style={style || undefined}>
+  <img src={src} alt={alt} loading="lazy" />
+</img-preview>
+
+<script>
+  import "./register.js";
+</script>
